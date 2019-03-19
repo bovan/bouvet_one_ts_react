@@ -3,77 +3,77 @@
     "id": "0",
     "title": "",
     "content": "404 Page not found :( The requested page could not be found.",
-    "url": "http://localhost:4000/bouvet_one_ts_react/404.html",
+    "url": "https://bovan.github.io/bouvet_one_ts_react/404.html",
     "relUrl": "/404.html"
   },
   "1": {
     "id": "1",
     "title": "",
     "content": "Kom i gang med Typescript Up’n’go med React i TypeScript! Børge Antonsen",
-    "url": "http://localhost:4000/bouvet_one_ts_react/",
+    "url": "https://bovan.github.io/bouvet_one_ts_react/",
     "relUrl": "/"
   },
   "2": {
     "id": "2",
     "title": "Installasjon",
     "content": "Jeg går ut fra at man har følgende installert: node 8.10.0 yarn 1.13.0 Du kan enkelt sjekke versjonen av disse: node --version yarn --version Installasjon Kjør create-react-app yarn create react-app bouvet-fjell --typescript Dette vil opprette de nødvendige filene for et utviklingsmiljø for React i TypeScript. Dette kan vi lett utvide til å bruke en valgfri backend Gå inn i prosjekt-mappen vi har opprettet: cd bouvet-fjell NPM Hvis du ønsker å bruke npm i stedet for yarn trenger du npm version 5.2+. Du kan da kjøre: npx create-react-app my-app --typescript --use-npm",
-    "url": "http://localhost:4000/bouvet_one_ts_react/installasjon/",
+    "url": "https://bovan.github.io/bouvet_one_ts_react/installasjon/",
     "relUrl": "/installasjon/"
   },
   "3": {
     "id": "3",
     "title": "Backend mock",
     "content": "Backend Vi trenger en backend-tjeneste for å serve testdata. En enkel server i express.js som leverer JSON holder for dette eksempelet. Først installerer vi express: yarn add express Vi lager en ny mappe server og oppretter en ny javascript fil ./server/server.js 400: Invalid request Det denne gjør er bare å lytte på port 5000, og svare på http-requests til http://localhost:5000/api/fjell, og så returnere en liste over fjell i bymarka. Denne kan senere byttes ut med en mer nyttig backend i valgfritt språk. Vi kan nå også starte backend-serveren vår: node server.js",
-    "url": "http://localhost:4000/bouvet_one_ts_react/backend/",
+    "url": "https://bovan.github.io/bouvet_one_ts_react/backend/",
     "relUrl": "/backend/"
   },
   "4": {
     "id": "4",
     "title": "Oppsett",
     "content": "Oppsett Når create-react-app er ferdig må vi gjøre klar et par ting til før vi kan starte. Proxy Det første vi må gjøre er å sørge for at utviklingsserveren vår kan nå backend-tjenesten vår. Dette gjør vi ved å legge til en linje på øverste nivå i package.json: { &quot;name&quot;: ... ... &quot;proxy&quot;: &quot;http://127.0.0.1:5000&quot;, ... } Redux For å lagre data fra backend bruker vi i denne guiden Redux, vi må da installere et par pakker til kodebasen vår: yarn add redux react-redux @types/react-redux typesafe-actions Spesielt for TypeScript er at vi trenger å installere types for pakker som ikke inkluderere disse. Mange pakker har inkludert types og da trenger man ikke å legge disse til. react-redux oppdaterer ikke sine egne types og vi må derfor hente dette fra DefinitelyTyped sin pakke. Redux Dev Tools For å lettere kunne følge med på hva som foregår bruker vi redux-devtools Plugin/Extension for Chrome og Firefox er tilgjengelig via http://extension.remotedev.io/ For å koble opp appen vår mot denne kan vi bruke redux-devtools-extension yarn add redux-devtools-extension Oppstart Med alle endringer vi ønsker å gjøre i package.json utført, kan vi nå starte frontend-serveren yarn start",
-    "url": "http://localhost:4000/bouvet_one_ts_react/oppsett/",
+    "url": "https://bovan.github.io/bouvet_one_ts_react/oppsett/",
     "relUrl": "/oppsett/"
   },
   "5": {
     "id": "5",
     "title": "Klargjøre app",
     "content": "Klargjøring Før vi starter tar vi bort det vi ikke trenger, slik at det er plass til vår app. Vi kan slette hele &lt;header&gt;&lt;/header&gt; tag i src/App.js, og ta bort importeringen av logo. Vi står da igjen med: import React, { Component } from &#39;react&#39;; import &#39;./App.css&#39;; class App extends Component { render() { return ( &lt;div className=&quot;App&quot;&gt; { /* slett innhold her */ } &lt;/div&gt; ); } } export default App; Vi kan også rydde bort CSS som vi ikke trenger i App.css slik at vi står igjen med de øverste 3 linjene: .App { text-align: center; }",
-    "url": "http://localhost:4000/bouvet_one_ts_react/klargjore/",
+    "url": "https://bovan.github.io/bouvet_one_ts_react/klargjore/",
     "relUrl": "/klargjore/"
   },
   "6": {
     "id": "6",
     "title": "Struktur og types",
     "content": "Struktur I denne guiden skal vi gå for følgende filstruktur: -- src | |-- components | | `-- Fjell.tsx | |-- store | | |-- fjell | | | |-- actions.ts | | | |-- middleware.ts | | | |-- reducer.ts | | | `-- types.ts | | `-- index.ts | |-- App.tsx -- server `-- server.js Types For at TypeScript skal kunne hjelpe oss med objektet fra backend definerer vi hvordan dette ser ut. store/fjell/types.ts export interface IFjell { navn: string; hoyde: number; } Vi kan også definere opp hvordan vi ønsker dette skal se ut i Redux store i samme fil: export interface IFjellState { // readonly gjør at TypeScript vil klage hvis vi prøver å endre state readonly fjell: IFjell[] }",
-    "url": "http://localhost:4000/bouvet_one_ts_react/types/",
+    "url": "https://bovan.github.io/bouvet_one_ts_react/types/",
     "relUrl": "/types/"
   },
   "7": {
     "id": "7",
     "title": "Redux",
     "content": "Redux For å lagre state til applikasjonen bruker vi redux. Dette Redux-oppsettet er veldig minimalistisk for å demonstrere hvordan man setter opp de forskjellige delene med TypeScript. Actions Definerer opp redux actiontypes som enums: `` // ./src/store/fjell/types.ts export enum FjellActionTypes { FETCH_REQUEST = &#39;@@fjell/FETCH_REQUEST&#39;, FETCH_SUCCESS = &#39;@@fjell/FETCH_SUCCESS&#39;, } Og lager action creators for dem: // ./src/store/fjell/actions.ts import { action } from &#39;typesafe-actions&#39;; import { FjellActionTypes, IFjell } from &#39;./types&#39;; export const fetchRequest = () =&gt; action(FjellActionTypes.FETCH_REQUEST); export const fetchSuccess = (data: IFjell[]) =&gt; action(FjellActionTypes.FETCH_SUCCESS, data); Reducer Vi bruker FjellState når vi setter opp reducer, dette gjør at TypeScript kan validere koden vår. // ./store/fjell/reducer.ts import { Reducer } from &#39;redux&#39;; import { IFjellState, FjellActionTypes } from &quot;./types&quot;; const initialState: IFjellState = { fjell: [] }; const reducer: Reducer&lt;IFjellState&gt; = (state = initialState, action) =&gt; { switch (action.type) { case FjellActionTypes.FETCH_SUCCESS: { return { ...state, fjell: action.payload }; } default: { return state; } } }; export { reducer as fjellReducer }; Store Vi setter opp store med reducers og dev tools i store/index.ts. // ./src/store/index.ts import { combineReducers, createStore } from &#39;redux&#39;; import { composeWithDevTools } from &#39;redux-devtools-extension&#39;; import { fjellReducer } from &#39;./fjell/reducer&#39;; import { FjellState } from &#39;./fjell/types&#39;; export interface ApplicationState { fjell: FjellState } const reducers = combineReducers&lt;ApplicationState&gt;({ fjell: fjellReducer }); export const store = createStore( reducers, composeWithDevTools() ); Store i React For å aktivere store i appen vår må vi legge det inn i React: // ./src/App.tsx import { Provider } from &quot;react-redux&quot;; ... render() { return ( &lt;Provider store={store}&gt; &lt;div className=&quot;App&quot;&gt; &lt;h1&gt;FjellAppen&lt;/h1&gt; &lt;Fjell /&gt; &lt;/div&gt; &lt;/Provider&gt; ); } ...",
-    "url": "http://localhost:4000/bouvet_one_ts_react/redux/",
+    "url": "https://bovan.github.io/bouvet_one_ts_react/redux/",
     "relUrl": "/redux/"
   },
   "8": {
     "id": "8",
     "title": "Ajax",
     "content": "Ajax For å hente data fra backend trenger vi en middleware. Det finnes mange alternativer her (f.eks Redux-Saga) man kan benytte seg av. Dette eksemplet er en veldig minimalistisk (og potensielt sett ikke bugfri) variant for å letter se hva som foregår internt. // ./src/store/fjell/middleware.ts import { fetchSuccess } from &quot;./actions&quot;; import { FjellActionTypes } from &quot;./types&quot;; import { Middleware, MiddlewareAPI } from &#39;redux&#39;; // fetch data og dispatch success const fetchFjell = (api: MiddlewareAPI) =&gt; fetch(&quot;/api/fjell&quot;) .then(response =&gt; response.json()) .then(json =&gt; { api.dispatch(fetchSuccess(json)); }); // fang opp fetch request og start fetchFjell const middleware: Middleware = api =&gt; next =&gt; action =&gt; { if (action.type === FjellActionTypes.FETCH_REQUEST) fetchFjell(api); return next(action); } export { middleware as fjellMiddleware } Vi aktiverer så middleware i store: // ./src/store/index.ts ... import { applyMiddleware /* ny import */, createStore } from &#39;redux&#39;; ... const store = createStore( fjellReducer, composeWithDevTools( applyMiddleware(fjellMiddleware) // ny linje ) );",
-    "url": "http://localhost:4000/bouvet_one_ts_react/ajax/",
+    "url": "https://bovan.github.io/bouvet_one_ts_react/ajax/",
     "relUrl": "/ajax/"
   },
   "9": {
     "id": "9",
     "title": "Visning",
     "content": "Visning Når alt er satt opp kan vi presentere dataene vi får fra backend i et React-view // ./src/components/Fjell.tsx import * as React from &quot;react&quot;; import { connect } from &quot;react-redux&quot;; import { IFjell } from &quot;../store/fjell/types&quot;; import { fetchRequest } from &quot;../store/fjell/actions&quot;; import { Dispatch } from &quot;redux&quot;; import { IApplicationState } from &quot;../store&quot;; // definerer separate props for bedre oversikt interface dispatchProps { fetch: () =&gt; void; } interface stateProps { fjell: IFjell[]; } // merger sammen props for bruk i React.Component type props = dispatchProps &amp; stateProps; class Fjell extends React.Component&lt;props&gt; { componentDidMount() { // når komponenten mountes ønsker vi å starte action // som trigger fetch this.props.fetch(); } render() { return ( &lt;&gt; { this.props.fjell.map(f =&gt; ( &lt;div key={f.navn}&gt; {f.navn} &lt;em&gt;{f.hoyde} moh&lt;/em&gt; &lt;/div&gt; ))} &lt;/&gt; ) } } // hent state.fjell.fjell fra Redux const mapStateToProps = (state: ApplicationState) =&gt; { return { fjell: state.fjell.fjell } } // map inn dispatch for å hente data const mapDispatchToProps = (dispatch: Dispatch) =&gt; { return { fetch: () =&gt; dispatch(fetchRequest()) } } export default connect(mapStateToProps, mapDispatchToProps)(Fjell); For at connect(state, props)(Fjell) skal fungere må appen vår ha tilgang til store. Vi gjør dette med react-redux-komponenten, hvor vi legger inn storet. // ./src/app.tsx import Fjell from &quot;./components/Fjell&quot;; import { Provider } from &quot;react-redux&quot;; import { store } from &quot;./store&quot;; &lt;Provider store={store}&gt; &lt;div className=&quot;App&quot;&gt; &lt;h1&gt;FjellAppen&lt;/h1&gt; &lt;Fjell /&gt; &lt;/div&gt; &lt;/Provider&gt;",
-    "url": "http://localhost:4000/bouvet_one_ts_react/visning/",
+    "url": "https://bovan.github.io/bouvet_one_ts_react/visning/",
     "relUrl": "/visning/"
   },
   "10": {
     "id": "10",
     "title": "Om",
     "content": "Dette er en kort guide for å komme i gang med TypeScript. Baserer seg på React som frontend og create-react-app for å generere base-kode. Anbefalt lesing: Redux 4 + Typescript: A type-safe approach Typesafe actions Annet: Create your first Redux middleware TypeScript bouvet",
-    "url": "http://localhost:4000/bouvet_one_ts_react/om/",
+    "url": "https://bovan.github.io/bouvet_one_ts_react/om/",
     "relUrl": "/om/"
   }
   
