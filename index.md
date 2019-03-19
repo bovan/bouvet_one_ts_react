@@ -4,3 +4,6 @@
 
 layout: home
 ---
+Typescript & React (m.m.)
+
+Børge Antonsen
