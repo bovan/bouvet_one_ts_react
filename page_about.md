@@ -16,5 +16,5 @@ Anbefalt lesing:
 Annet:
 
 - [Create your first Redux middleware](https://medium.freecodecamp.org/how-to-create-your-first-redux-middleware-with-ease-a75e6b1384db)
-- [TypeScript](https://typescriptlang.org)
+- [TypeScript](https://www.typescriptlang.org/)
 - [bouvet](https://bouvet.no)
