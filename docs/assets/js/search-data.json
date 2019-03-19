@@ -72,7 +72,7 @@
   "10": {
     "id": "10",
     "title": "Om",
-    "content": "Dette er en kort guide for å komme i gang med TypeScript. Baserer seg på React som frontend og create-react-app for å generere base-kode. Du finner kildekoden på: github Anbefalt lesing: Redux 4 + Typescript: A type-safe approach Typesafe actions Annet: Create your first Redux middleware bouvet",
+    "content": "Dette er en kort guide for å komme i gang med TypeScript. Baserer seg på React som frontend og create-react-app for å generere base-kode. Anbefalt lesing: Redux 4 + Typescript: A type-safe approach Typesafe actions Annet: Create your first Redux middleware TypeScript bouvet",
     "url": "https://bovan.github.io/bouvet_one_ts_react/om/",
     "relUrl": "/om/"
   }
