@@ -4,6 +4,8 @@
 
 layout: home
 ---
-Typescript & React (m.m.)
+# Kom i gang med Typescript
+
+Up'n'go med React i TypeScript!
 
 Børge Antonsen
