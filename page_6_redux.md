@@ -76,11 +76,11 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { fjellReducer } from './fjell/reducer';
 import { FjellState } from './fjell/types';
 
-export interface ApplicationState {
+export interface IApplicationState {
   fjell: FjellState
 }
 
-const reducers = combineReducers<ApplicationState>({
+const reducers = combineReducers<IApplicationState>({
     fjell: fjellReducer
 });
 

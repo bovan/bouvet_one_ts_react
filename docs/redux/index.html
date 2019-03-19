@@ -225,11 +225,11 @@ TypeScript kan validere koden vår.</p>
 <span class="k">import</span> <span class="p">{</span> <span class="nx">fjellReducer</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'./fjell/reducer'</span><span class="p">;</span>
 <span class="k">import</span> <span class="p">{</span> <span class="nx">FjellState</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'./fjell/types'</span><span class="p">;</span>
 
-<span class="k">export</span> <span class="kr">interface</span> <span class="nx">ApplicationState</span> <span class="p">{</span>
+<span class="k">export</span> <span class="kr">interface</span> <span class="nx">IApplicationState</span> <span class="p">{</span>
   <span class="nl">fjell</span><span class="p">:</span> <span class="nx">FjellState</span>
 <span class="p">}</span>
 
-<span class="kd">const</span> <span class="nx">reducers</span> <span class="o">=</span> <span class="nx">combineReducers</span><span class="o">&lt;</span><span class="nx">ApplicationState</span><span class="o">&gt;</span><span class="p">({</span>
+<span class="kd">const</span> <span class="nx">reducers</span> <span class="o">=</span> <span class="nx">combineReducers</span><span class="o">&lt;</span><span class="nx">IApplicationState</span><span class="o">&gt;</span><span class="p">({</span>
     <span class="na">fjell</span><span class="p">:</span> <span class="nx">fjellReducer</span>
 <span class="p">});</span>
 

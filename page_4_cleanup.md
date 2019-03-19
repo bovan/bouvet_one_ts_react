@@ -10,7 +10,7 @@ nav_order: 4
 Før vi starter tar vi bort det vi ikke trenger, slik at det er plass til
 vår app.
 
-Vi kan slette hele `<header></header>` tag i `src/App.js`, og ta bort importeringen av logo. Vi står da igjen med:
+Vi kan slette hele `<header></header>` tag i `src/App.tsx`, og ta bort importeringen av logo. Vi står da igjen med:
 
 ```typescript
 import React, { Component } from 'react';

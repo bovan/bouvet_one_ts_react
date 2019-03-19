@@ -51,7 +51,7 @@ class Fjell extends React.Component<props> {
 }
 
 // hent state.fjell.fjell fra Redux
-const mapStateToProps = (state: ApplicationState) => {
+const mapStateToProps = (state: IApplicationState) => {
     return {
         fjell: state.fjell.fjell
     }
