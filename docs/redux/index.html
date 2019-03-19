@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  
+
+  <title>Redux - Kom i gang med TypeScript (& React)</title>
+  <link rel="stylesheet" href="/assets/css/just-the-docs.css">
+
+  
+
+  
+  <script type="text/javascript" src="/assets/js/just-the-docs.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+  <div class="page-wrap">
+    <div class="side-bar">
+      <a href="" class="site-title fs-6 lh-tight">Kom i gang med TypeScript (& React)</a>
+      <span class="fs-3"><button class="js-main-nav-trigger navigation-list-toggle btn btn-outline" type="button" data-text-toggle="Hide">Menu</button></span>
+      <div class="navigation main-nav js-main-nav">
+        <nav role="navigation" aria-label="Main navigation">
+  <ul class="navigation-list">
+    
+    
+      
+        
+          <li class="navigation-list-item active">
+            
+            <a href="/" class="navigation-list-link"></a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item active">
+            
+            <a href="/404.html" class="navigation-list-link"></a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="/installasjon/" class="navigation-list-link">Installasjon</a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="/backend/" class="navigation-list-link">Backend mock</a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="/oppsett/" class="navigation-list-link">Oppsett</a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="/klargjore/" class="navigation-list-link">Klargjøre app</a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="/types/" class="navigation-list-link">Struktur og types</a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item active">
+            
+            <a href="/redux/" class="navigation-list-link active">Redux</a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="/ajax/" class="navigation-list-link">Ajax</a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="/visning/" class="navigation-list-link">Visning</a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="/om/" class="navigation-list-link">Om</a>
+            
+          </li>
+        
+      
+    
+  </ul>
+</nav>
+
+      </div>
+      <footer role="contentinfo" class="site-footer">
+        <p class="text-small text-grey-dk-000 mb-0">This site uses <a href="https://github.com/pmarsceill/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.</p>
+      </footer>
+    </div>
+    <div class="main-content-wrap js-main-content" tabindex="0">
+      <div class="page-header">
+        <div class="main-content">
+          
+          
+        </div>
+      </div>
+      <div class="main-content">
+        
+          
+        
+        <div id="main-content" class="page-content" role="main">
+          <h1 id="redux">Redux</h1>
+
+<p>For å lagre state til applikasjonen bruker vi redux.
+Dette Redux-oppsettet er veldig minimalistisk for å demonstrere hvordan man setter opp
+de forskjellige delene med TypeScript.</p>
+
+<h2 id="actions">Actions</h2>
+
+<p>Definerer opp redux actiontypes som enums:</p>
+
+<p>``</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ./src/store/fjell/types.ts</span>
+<span class="k">export</span> <span class="kr">enum</span> <span class="nx">FjellActionTypes</span> <span class="p">{</span>
+  <span class="nx">FETCH_REQUEST</span> <span class="o">=</span> <span class="s1">'@@fjell/FETCH_REQUEST'</span><span class="p">,</span>
+  <span class="nx">FETCH_SUCCESS</span> <span class="o">=</span> <span class="s1">'@@fjell/FETCH_SUCCESS'</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Og lager action creators for dem:</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ./src/store/fjell/actions.ts</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">action</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'typesafe-actions'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">FjellActionTypes</span><span class="p">,</span> <span class="nx">IFjell</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'./types'</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">fetchRequest</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">action</span><span class="p">(</span><span class="nx">FjellActionTypes</span><span class="p">.</span><span class="nx">FETCH_REQUEST</span><span class="p">);</span>
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">fetchSuccess</span> <span class="o">=</span> <span class="p">(</span><span class="nx">data</span><span class="p">:</span> <span class="nx">IFjell</span><span class="p">[])</span> <span class="o">=&gt;</span> <span class="nx">action</span><span class="p">(</span><span class="nx">FjellActionTypes</span><span class="p">.</span><span class="nx">FETCH_SUCCESS</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="reducer">Reducer</h2>
+
+<p>Vi bruker <code class="highlighter-rouge">FjellState</code> når vi setter opp reducer, dette gjør at
+TypeScript kan validere koden vår.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ./store/fjell/reducer.ts</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Reducer</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'redux'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">IFjellState</span><span class="p">,</span> <span class="nx">FjellActionTypes</span> <span class="p">}</span> <span class="k">from</span> <span class="s2">"./types"</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">initialState</span><span class="p">:</span> <span class="nx">IFjellState</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">fjell</span><span class="p">:</span> <span class="p">[]</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">reducer</span><span class="p">:</span> <span class="nx">Reducer</span><span class="o">&lt;</span><span class="nx">IFjellState</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">(</span><span class="nx">state</span> <span class="o">=</span> <span class="nx">initialState</span><span class="p">,</span> <span class="nx">action</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">switch</span> <span class="p">(</span><span class="nx">action</span><span class="p">.</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="nx">FjellActionTypes</span><span class="p">.</span><span class="na">FETCH_SUCCESS</span><span class="p">:</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="p">{</span> <span class="p">...</span><span class="nx">state</span><span class="p">,</span> <span class="na">fjell</span><span class="p">:</span> <span class="nx">action</span><span class="p">.</span><span class="nx">payload</span> <span class="p">};</span>
+        <span class="p">}</span>
+        <span class="nl">default</span><span class="p">:</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">state</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">export</span> <span class="p">{</span> <span class="nx">reducer</span> <span class="k">as</span> <span class="nx">fjellReducer</span> <span class="p">};</span>
+
+</code></pre></div></div>
+
+<h2 id="store">Store</h2>
+
+<p>Vi setter opp store med reducers og dev tools i <code class="highlighter-rouge">store/index.ts</code>.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ./src/store/index.ts</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">combineReducers</span><span class="p">,</span> <span class="nx">createStore</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'redux'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">composeWithDevTools</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'redux-devtools-extension'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">fjellReducer</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'./fjell/reducer'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">FjellState</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'./fjell/types'</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="kr">interface</span> <span class="nx">ApplicationState</span> <span class="p">{</span>
+  <span class="nl">fjell</span><span class="p">:</span> <span class="nx">FjellState</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">reducers</span> <span class="o">=</span> <span class="nx">combineReducers</span><span class="o">&lt;</span><span class="nx">ApplicationState</span><span class="o">&gt;</span><span class="p">({</span>
+    <span class="na">fjell</span><span class="p">:</span> <span class="nx">fjellReducer</span>
+<span class="p">});</span>
+
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="nx">createStore</span><span class="p">(</span>
+    <span class="nx">reducers</span><span class="p">,</span>
+    <span class="nx">composeWithDevTools</span><span class="p">()</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="store-i-react">Store i React</h2>
+
+<p>For å aktivere store i appen vår må vi legge det inn i React:</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ./src/App.tsx</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Provider</span> <span class="p">}</span> <span class="k">from</span> <span class="s2">"react-redux"</span><span class="p">;</span>
+<span class="p">...</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="nx">Provider</span> <span class="nx">store</span><span class="o">=</span><span class="p">{</span><span class="nx">store</span><span class="p">}</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="s2">"App"</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">FjellAppen</span><span class="o">&lt;</span><span class="sr">/h1</span><span class="err">&gt;
+</span>          <span class="o">&lt;</span><span class="nx">Fjell</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="sr">/Provider</span><span class="err">&gt;
+</span>    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">...</span>
+</code></pre></div></div>
+
+
+
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

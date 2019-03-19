@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  
+
+  <title>Struktur og types - Kom i gang med TypeScript (& React)</title>
+  <link rel="stylesheet" href="/assets/css/just-the-docs.css">
+
+  
+
+  
+  <script type="text/javascript" src="/assets/js/just-the-docs.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+  <div class="page-wrap">
+    <div class="side-bar">
+      <a href="" class="site-title fs-6 lh-tight">Kom i gang med TypeScript (& React)</a>
+      <span class="fs-3"><button class="js-main-nav-trigger navigation-list-toggle btn btn-outline" type="button" data-text-toggle="Hide">Menu</button></span>
+      <div class="navigation main-nav js-main-nav">
+        <nav role="navigation" aria-label="Main navigation">
+  <ul class="navigation-list">
+    
+    
+      
+        
+          <li class="navigation-list-item active">
+            
+            <a href="/" class="navigation-list-link"></a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item active">
+            
+            <a href="/404.html" class="navigation-list-link"></a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="/installasjon/" class="navigation-list-link">Installasjon</a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="/backend/" class="navigation-list-link">Backend mock</a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="/oppsett/" class="navigation-list-link">Oppsett</a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="/klargjore/" class="navigation-list-link">Klargjøre app</a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item active">
+            
+            <a href="/types/" class="navigation-list-link active">Struktur og types</a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="/redux/" class="navigation-list-link">Redux</a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="/ajax/" class="navigation-list-link">Ajax</a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="/visning/" class="navigation-list-link">Visning</a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="/om/" class="navigation-list-link">Om</a>
+            
+          </li>
+        
+      
+    
+  </ul>
+</nav>
+
+      </div>
+      <footer role="contentinfo" class="site-footer">
+        <p class="text-small text-grey-dk-000 mb-0">This site uses <a href="https://github.com/pmarsceill/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.</p>
+      </footer>
+    </div>
+    <div class="main-content-wrap js-main-content" tabindex="0">
+      <div class="page-header">
+        <div class="main-content">
+          
+          
+        </div>
+      </div>
+      <div class="main-content">
+        
+          
+        
+        <div id="main-content" class="page-content" role="main">
+          <h1 id="struktur">Struktur</h1>
+
+<p>I denne guiden skal vi gå for følgende filstruktur:</p>
+
+<pre><code class="language-ascii">-- src
+|   |-- components
+|   |   `-- Fjell.tsx
+|   |-- store
+|   |   |-- fjell
+|   |   |   |-- actions.ts
+|   |   |   |-- middleware.ts
+|   |   |   |-- reducer.ts
+|   |   |   `-- types.ts
+|   |   `-- index.ts
+|   |-- App.tsx
+-- server
+   `-- server.js
+</code></pre>
+
+<h1 id="types">Types</h1>
+
+<p>For at TypeScript skal kunne hjelpe oss med objektet fra backend definerer
+vi hvordan dette ser ut.</p>
+
+<p><code class="highlighter-rouge">store/fjell/types.ts</code></p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kr">interface</span> <span class="nx">IFjell</span> <span class="p">{</span>
+   <span class="nl">navn</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
+   <span class="nl">hoyde</span><span class="p">:</span> <span class="nx">number</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Vi kan også definere opp hvordan vi ønsker dette skal se ut i Redux store i samme fil:</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kr">interface</span> <span class="nx">IFjellState</span> <span class="p">{</span>
+   <span class="c1">// readonly gjør at TypeScript vil klage hvis vi prøver å endre state</span>
+   <span class="nx">readonly</span> <span class="nx">fjell</span><span class="p">:</span> <span class="nx">IFjell</span><span class="p">[]</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+
+
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

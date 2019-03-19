@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  
+
+  <title>Oppsett - Kom i gang med TypeScript (& React)</title>
+  <link rel="stylesheet" href="/assets/css/just-the-docs.css">
+
+  
+
+  
+  <script type="text/javascript" src="/assets/js/just-the-docs.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+  <div class="page-wrap">
+    <div class="side-bar">
+      <a href="" class="site-title fs-6 lh-tight">Kom i gang med TypeScript (& React)</a>
+      <span class="fs-3"><button class="js-main-nav-trigger navigation-list-toggle btn btn-outline" type="button" data-text-toggle="Hide">Menu</button></span>
+      <div class="navigation main-nav js-main-nav">
+        <nav role="navigation" aria-label="Main navigation">
+  <ul class="navigation-list">
+    
+    
+      
+        
+          <li class="navigation-list-item active">
+            
+            <a href="/" class="navigation-list-link"></a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item active">
+            
+            <a href="/404.html" class="navigation-list-link"></a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="/installasjon/" class="navigation-list-link">Installasjon</a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="/backend/" class="navigation-list-link">Backend mock</a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item active">
+            
+            <a href="/oppsett/" class="navigation-list-link active">Oppsett</a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="/klargjore/" class="navigation-list-link">Klargjøre app</a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="/types/" class="navigation-list-link">Struktur og types</a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="/redux/" class="navigation-list-link">Redux</a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="/ajax/" class="navigation-list-link">Ajax</a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="/visning/" class="navigation-list-link">Visning</a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="/om/" class="navigation-list-link">Om</a>
+            
+          </li>
+        
+      
+    
+  </ul>
+</nav>
+
+      </div>
+      <footer role="contentinfo" class="site-footer">
+        <p class="text-small text-grey-dk-000 mb-0">This site uses <a href="https://github.com/pmarsceill/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.</p>
+      </footer>
+    </div>
+    <div class="main-content-wrap js-main-content" tabindex="0">
+      <div class="page-header">
+        <div class="main-content">
+          
+          
+        </div>
+      </div>
+      <div class="main-content">
+        
+          
+        
+        <div id="main-content" class="page-content" role="main">
+          <h1 id="oppsett">Oppsett</h1>
+
+<p>Når create-react-app er ferdig må vi gjøre klar et par ting til før vi kan starte.</p>
+
+<h2 id="proxy">Proxy</h2>
+
+<p>Det første vi må gjøre er å sørge for at utviklingsserveren vår kan nå backend-tjenesten vår. Dette gjør vi ved å legge til en linje på øverste nivå i package.json:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+    "name": ...
+    ...
+    "proxy": "http://127.0.0.1:5000",
+    ...
+}
+</code></pre></div></div>
+
+<h2 id="redux">Redux</h2>
+
+<p>For å lagre data fra backend bruker vi i denne guiden Redux, vi må
+da installere et par pakker til kodebasen vår:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yarn add redux react-redux @types/react-redux typesafe-actions
+</code></pre></div></div>
+
+<p>Spesielt for TypeScript er at vi trenger å installere types for pakker
+som ikke inkluderere disse. Mange pakker har inkludert types og da trenger
+man ikke å legge disse til. <code class="highlighter-rouge">react-redux</code> oppdaterer ikke sine egne types
+og vi må derfor hente dette fra DefinitelyTyped sin pakke.</p>
+
+<h2 id="redux-dev-tools">Redux Dev Tools</h2>
+
+<p>For å lettere kunne følge med på hva som foregår bruker vi redux-devtools</p>
+
+<p>Plugin/Extension for Chrome og Firefox er tilgjengelig via <a href="http://extension.remotedev.io/">http://extension.remotedev.io/</a></p>
+
+<p>For å koble opp appen vår mot denne kan vi bruke <code class="highlighter-rouge">redux-devtools-extension</code></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yarn add redux-devtools-extension
+</code></pre></div></div>
+
+<h2 id="oppstart">Oppstart</h2>
+
+<p>Med alle endringer vi ønsker å gjøre i <code class="highlighter-rouge">package.json</code> utført, kan vi nå
+starte frontend-serveren</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yarn start
+</code></pre></div></div>
+
+
+
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
